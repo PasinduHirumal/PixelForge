@@ -1,26 +1,129 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
+@theme {
+  --color-primary: #4F46E5;
+  --color-primary-hover: #4338CA;
+  --color-secondary: #7C3AED;
+  --color-secondary-hover: #6D28D9;
+  --color-accent: #06B6D4;
+  --color-success: #22C55E;
+  
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  
+  --radius-card: 28px;
+  --radius-button: 9999px;
+  
+  --shadow-premium: 0 20px 40px -15px rgba(0, 0, 0, 0.08);
+  --shadow-premium-dark: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  --shadow-glass: 0 8px 32px 0 rgba(31, 38, 135, 0.04);
+  --shadow-glass-dark: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --animate-gradient: gradient 8s ease infinite;
+  --animate-pulse-slow: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  
+  @keyframes gradient {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
   }
 }
 
+:root {
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+  --card-bg: rgba(255, 255, 255, 0.6);
+  --card-border: rgba(255, 255, 255, 0.7);
+  --card-shadow: var(--shadow-premium);
+  --input-bg: rgba(255, 255, 255, 0.8);
+  --input-border: rgba(226, 232, 240, 0.8);
+}
+
+.dark {
+  --background: #09090B;
+  --foreground: #F4F4F5;
+  --card-bg: rgba(18, 18, 22, 0.6);
+  --card-border: rgba(39, 39, 42, 0.4);
+  --card-shadow: var(--shadow-premium-dark);
+  --input-bg: rgba(24, 24, 27, 0.6);
+  --input-border: rgba(39, 39, 42, 0.6);
+}
+
+/* Base resets & global styles */
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), system-ui, sans-serif;
+  transition: background-color 0.5s cubic-bezier(0.4, 0, 0.2, 1), color 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-x: hidden;
+}
+
+/* Glassmorphism premium layout utils */
+.glass-panel {
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--card-border);
+  box-shadow: var(--card-shadow);
+  border-radius: var(--radius-card);
+}
+
+.glass-input {
+  background: var(--input-bg);
+  border: 1px solid var(--input-border);
+  color: var(--foreground);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+}
+
+/* Gradient text utility */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 58, 237, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(124, 58, 237, 0.25);
+}
+
+/* Custom react-easy-crop overrides for premium look */
+.react-easy-crop_Container {
+  background: #0d0d11 !important;
+  border-radius: 20px;
+}
+
+.react-easy-crop_CropArea {
+  border: 2px solid var(--color-primary) !important;
+  box-shadow: 0 0 0 9999px rgba(9, 9, 11, 0.85) !important;
+  border-radius: 4px;
+}
+
+.react-easy-crop_CropAreaGrid::before,
+.react-easy-crop_CropAreaGrid::after {
+  border: 1px dashed rgba(255, 255, 255, 0.3) !important;
+}
+
+.react-easy-crop_CropAreaRound {
+  border-radius: 50% !important;
 }
