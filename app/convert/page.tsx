@@ -2,6 +2,7 @@
 
 import { ArrowLeft, RefreshCw } from "lucide-react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { useImageUpload } from "../../hooks/useImageUpload";
 import { useConvert } from "../../hooks/useConvert";
 import { useDownload } from "../../hooks/useDownload";
@@ -97,44 +98,57 @@ export default function ConvertPage() {
       </div>
 
       {/* Dropzone vs Convert Editor */}
-      {!image ? (
-        <div className="flex-grow flex items-center justify-center py-10 md:py-16">
-          <Dropzone
-            onFileSelect={handleFile}
-            loading={uploadLoading}
-            error={uploadError}
-          />
-        </div>
-      ) : (
-        /* Workspace Grid Layout */
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start flex-grow">
-          
-          {/* Settings Column */}
-          <div className="lg:col-span-1">
-            <ConvertSettings
-              inputImage={image}
-              settings={settings}
-              updateSetting={updateSetting}
-              onConvert={handleConvertTrigger}
-              loading={convertLoading}
-              canConvert={canConvert}
+      <AnimatePresence mode="wait">
+        {!image ? (
+          <motion.div
+            key="dropzone"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="flex-grow flex items-center justify-center py-10 md:py-16 w-full"
+          >
+            <Dropzone
+              onFileSelect={handleFile}
+              loading={uploadLoading}
+              error={uploadError}
             />
-          </div>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="workspace"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start flex-grow w-full"
+          >
+            {/* Settings Column */}
+            <div className="lg:col-span-1">
+              <ConvertSettings
+                inputImage={image}
+                settings={settings}
+                updateSetting={updateSetting}
+                onConvert={handleConvertTrigger}
+                loading={convertLoading}
+                canConvert={canConvert}
+              />
+            </div>
 
-          {/* Workspace / Comparison Column */}
-          <div className="lg:col-span-2 flex flex-col h-full">
-            <ConvertWorkspace
-              inputImage={image}
-              convertedBlob={convertedBlob}
-              convertedUrl={convertedUrl}
-              settings={settings}
-              onDownload={handleDownloadTrigger}
-              loading={convertLoading}
-            />
-          </div>
-
-        </div>
-      )}
+            {/* Workspace / Comparison Column */}
+            <div className="lg:col-span-2 flex flex-col h-full">
+              <ConvertWorkspace
+                inputImage={image}
+                convertedBlob={convertedBlob}
+                convertedUrl={convertedUrl}
+                settings={settings}
+                onDownload={handleDownloadTrigger}
+                loading={convertLoading}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </div>
   );

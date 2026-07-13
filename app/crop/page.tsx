@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { ArrowLeft, Crop as CropIcon } from "lucide-react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { useImageUpload } from "../../hooks/useImageUpload";
 import { useCrop } from "../../hooks/useCrop";
 import { useDownload } from "../../hooks/useDownload";
@@ -145,67 +146,80 @@ export default function CropPage() {
       </div>
 
       {/* Upload State vs Editor Workspace State */}
-      {!image ? (
-        <div className="flex-grow flex items-center justify-center py-10 md:py-16">
-          <Dropzone
-            onFileSelect={handleFile}
-            loading={uploadLoading}
-            error={uploadError}
-          />
-        </div>
-      ) : (
-        /* Workspace Grid */
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start flex-grow">
-          
-          {/* Main Cropper Workspace Area */}
-          <div className="lg:col-span-2 flex flex-col h-full">
-            <CropWorkspace
-              image={image}
-              crop={crop}
-              setCrop={setCrop}
-              zoom={zoom}
-              setZoom={setZoom}
-              rotation={rotation}
-              aspect={aspect}
-              flipH={flipH}
-              flipV={flipV}
-              onCropComplete={onCropComplete}
+      <AnimatePresence mode="wait">
+        {!image ? (
+          <motion.div
+            key="dropzone"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="flex-grow flex items-center justify-center py-10 md:py-16 w-full"
+          >
+            <Dropzone
+              onFileSelect={handleFile}
+              loading={uploadLoading}
+              error={uploadError}
             />
-          </div>
+          </motion.div>
+        ) : (
+          <motion.div
+            key="workspace"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start flex-grow w-full"
+          >
+            {/* Main Cropper Workspace Area */}
+            <div className="lg:col-span-2 flex flex-col h-full">
+              <CropWorkspace
+                image={image}
+                crop={crop}
+                setCrop={setCrop}
+                zoom={zoom}
+                setZoom={setZoom}
+                rotation={rotation}
+                aspect={aspect}
+                flipH={flipH}
+                flipV={flipV}
+                onCropComplete={onCropComplete}
+              />
+            </div>
 
-          {/* Adjustments Controls Area */}
-          <div className="lg:col-span-1">
-            <CropControls
-              zoom={zoom}
-              setZoom={setZoom}
-              commitZoom={commitZoom}
-              rotation={rotation}
-              setRotation={setRotation}
-              commitRotation={commitRotation}
-              aspect={aspect}
-              setAspect={setAspect}
-              flipH={flipH}
-              flipV={flipV}
-              handleFlipH={handleFlipH}
-              handleFlipV={handleFlipV}
-              customWidth={customWidth}
-              customHeight={customHeight}
-              setCustomWidth={setCustomWidth}
-              setCustomHeight={setCustomHeight}
-              keepRatio={keepRatio}
-              toggleKeepRatio={toggleKeepRatio}
-              reset={reset}
-              undo={undo}
-              redo={redo}
-              canUndo={canUndo}
-              canRedo={canRedo}
-              onCropTrigger={handleCropTrigger}
-              loading={cropLoading}
-            />
-          </div>
-
-        </div>
-      )}
+            {/* Adjustments Controls Area */}
+            <div className="lg:col-span-1">
+              <CropControls
+                zoom={zoom}
+                setZoom={setZoom}
+                commitZoom={commitZoom}
+                rotation={rotation}
+                setRotation={setRotation}
+                commitRotation={commitRotation}
+                aspect={aspect}
+                setAspect={setAspect}
+                flipH={flipH}
+                flipV={flipV}
+                handleFlipH={handleFlipH}
+                handleFlipV={handleFlipV}
+                customWidth={customWidth}
+                customHeight={customHeight}
+                setCustomWidth={setCustomWidth}
+                setCustomHeight={setCustomHeight}
+                keepRatio={keepRatio}
+                toggleKeepRatio={toggleKeepRatio}
+                reset={reset}
+                undo={undo}
+                redo={redo}
+                canUndo={canUndo}
+                canRedo={canRedo}
+                onCropTrigger={handleCropTrigger}
+                loading={cropLoading}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Export Preview Sidebar Drawer */}
       <CropPreview
