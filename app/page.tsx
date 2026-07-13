@@ -3,17 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import {
-  Crop,
-  RefreshCw,
-  Zap,
-  ShieldCheck,
-  ChevronDown,
-  Sparkles,
-  ArrowRight,
-  UploadCloud,
-  FileImage
-} from "lucide-react";
+import { Crop, RefreshCw, Zap, ShieldCheck, ChevronDown, Sparkles } from "lucide-react";
 import Button from "../components/shared/Button";
 import { cn } from "../lib/utils";
 
@@ -66,7 +56,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col gap-24 py-10 md:py-16">
-      
+
       {/* Hero Section */}
       <section className="relative flex flex-col items-center text-center max-w-4xl mx-auto gap-6 px-4">
         {/* Glow Effects */}
