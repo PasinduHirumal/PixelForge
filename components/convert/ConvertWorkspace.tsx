@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ArrowRight, Download, ImageIcon, RefreshCw, Sparkles, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 import { FileMeta } from "../../types";
 import { formatBytes } from "../../utils/image";
 import Button from "../shared/Button";
@@ -16,6 +17,7 @@ interface ConvertWorkspaceProps {
   };
   onDownload: () => void;
   loading: boolean;
+  imageLayoutId?: string;
 }
 
 export default function ConvertWorkspace({
@@ -25,6 +27,7 @@ export default function ConvertWorkspace({
   settings,
   onDownload,
   loading,
+  imageLayoutId,
 }: ConvertWorkspaceProps) {
   const [isImageLoading, setIsImageLoading] = useState(false);
 
@@ -65,13 +68,16 @@ export default function ConvertWorkspace({
                 <span className="font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider text-center text-xs">
                   Original Image
                 </span>
-                <div className="glass-panel p-2.5 bg-zinc-50/50 dark:bg-black/40 border border-zinc-200 dark:border-zinc-800/40 rounded-2xl flex items-center justify-center overflow-hidden h-[240px] md:h-[320px]">
+                <motion.div
+                  layoutId={imageLayoutId}
+                  className="glass-panel p-2.5 bg-zinc-50/50 dark:bg-black/40 border border-zinc-200/50 dark:border-zinc-800/40 rounded-2xl flex items-center justify-center overflow-hidden h-[240px] md:h-[320px]"
+                >
                   <img
                     src={inputImage.url}
                     alt="Original Upload"
                     className="max-h-[220px] md:max-h-[300px] w-auto rounded-lg object-contain"
                   />
-                </div>
+                </motion.div>
                 <div className="text-center text-[10px] text-zinc-500 dark:text-zinc-400 font-medium">
                   {inputImage.width}×{inputImage.height}px • {formatBytes(inputImage.size)}
                 </div>

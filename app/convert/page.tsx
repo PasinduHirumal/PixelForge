@@ -1,5 +1,7 @@
 "use client";
 
+import { useState, useEffect } from "react";
+
 import { ArrowLeft, RefreshCw } from "lucide-react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -27,6 +29,21 @@ export default function ConvertPage() {
   } = useConvert(image);
 
   const { downloadFile } = useDownload();
+
+  const [animationPhase, setAnimationPhase] = useState<"idle" | "animating" | "done">("idle");
+
+  // Sync image upload with animation phase
+  useEffect(() => {
+    if (image) {
+      setAnimationPhase("animating");
+      const timer = setTimeout(() => {
+        setAnimationPhase("done");
+      }, 700); // 700ms showcase
+      return () => clearTimeout(timer);
+    } else {
+      setAnimationPhase("idle");
+    }
+  }, [image]);
 
   // Detect input extension
   const inputExt = image ? image.name.split(".").pop()?.toLowerCase() : "";
@@ -99,13 +116,13 @@ export default function ConvertPage() {
 
       {/* Dropzone vs Convert Editor */}
       <AnimatePresence mode="wait">
-        {!image ? (
+        {animationPhase === "idle" && (
           <motion.div
             key="dropzone"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
+            transition={{ duration: 0.25 }}
             className="flex-grow flex items-center justify-center py-10 md:py-16 w-full"
           >
             <Dropzone
@@ -114,17 +131,53 @@ export default function ConvertPage() {
               error={uploadError}
             />
           </motion.div>
-        ) : (
+        )}
+
+        {animationPhase === "animating" && image && (
+          <motion.div
+            key="animating-showcase"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+            className="flex-grow flex flex-col items-center justify-center py-12 md:py-24 w-full relative min-h-[400px]"
+          >
+            <motion.div
+              layoutId="workspace-image-container"
+              className="glass-panel p-4 bg-white/70 dark:bg-zinc-900/60 border border-white/50 dark:border-zinc-800/40 rounded-3xl shadow-2xl flex items-center justify-center max-w-md w-full aspect-video overflow-hidden"
+            >
+              <img
+                src={image.url}
+                alt="Loading..."
+                className="max-h-[220px] w-auto rounded-xl object-contain shadow-lg"
+              />
+            </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="text-sm font-semibold text-zinc-500 dark:text-zinc-400 mt-4 animate-pulse"
+            >
+              Opening image in workspace...
+            </motion.p>
+          </motion.div>
+        )}
+
+        {animationPhase === "done" && image && (
           <motion.div
             key="workspace"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{ duration: 0.3, ease: "easeInOut" }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
             className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start flex-grow w-full"
           >
             {/* Settings Column */}
-            <div className="lg:col-span-1">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.4, type: "spring", damping: 20 }}
+              className="lg:col-span-1"
+            >
               <ConvertSettings
                 inputImage={image}
                 settings={settings}
@@ -133,10 +186,15 @@ export default function ConvertPage() {
                 loading={convertLoading}
                 canConvert={canConvert}
               />
-            </div>
+            </motion.div>
 
             {/* Workspace / Comparison Column */}
-            <div className="lg:col-span-2 flex flex-col h-full">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="lg:col-span-2 flex flex-col h-full"
+            >
               <ConvertWorkspace
                 inputImage={image}
                 convertedBlob={convertedBlob}
@@ -144,8 +202,9 @@ export default function ConvertPage() {
                 settings={settings}
                 onDownload={handleDownloadTrigger}
                 loading={convertLoading}
+                imageLayoutId="workspace-image-container"
               />
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

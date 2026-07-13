@@ -1,7 +1,6 @@
-"use client";
-
 import React from "react";
 import Cropper from "react-easy-crop";
+import { motion } from "framer-motion";
 import { FileMeta, AspectRatioPreset, Area } from "../../types";
 import { cn } from "../../lib/utils";
 
@@ -16,6 +15,7 @@ interface CropWorkspaceProps {
   flipH: boolean;
   flipV: boolean;
   onCropComplete: (croppedArea: Area, croppedAreaPixels: Area) => void;
+  imageLayoutId?: string;
 }
 
 export default function CropWorkspace({
@@ -29,6 +29,7 @@ export default function CropWorkspace({
   flipH,
   flipV,
   onCropComplete,
+  imageLayoutId,
 }: CropWorkspaceProps) {
   // Determine aspect ratio value for react-easy-crop
   // If free crop (0), react-easy-crop will let user crop any size. But wait!
@@ -37,7 +38,10 @@ export default function CropWorkspace({
   const cropAspect = aspect.value === 0 ? undefined : aspect.value;
 
   return (
-    <div className="glass-panel relative flex flex-col flex-grow min-h-[400px] md:min-h-[500px] bg-white/50 dark:bg-zinc-950/40 border border-zinc-200/50 dark:border-zinc-800/40 rounded-3xl shadow-inner overflow-hidden">
+    <motion.div
+      layoutId={imageLayoutId}
+      className="glass-panel relative flex flex-col flex-grow min-h-[400px] md:min-h-[500px] bg-white/50 dark:bg-zinc-950/40 border border-zinc-200/50 dark:border-zinc-800/40 rounded-3xl shadow-inner overflow-hidden"
+    >
       
       {/* Aspect Ratio Badge indicator */}
       <div className="absolute top-4 left-4 z-20 flex gap-2">
@@ -83,6 +87,6 @@ export default function CropWorkspace({
         Drag image to position • Pinch/Scroll to zoom
       </div>
 
-    </div>
+    </motion.div>
   );
 }
