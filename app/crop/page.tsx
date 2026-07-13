@@ -138,11 +138,11 @@ export default function CropPage() {
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="sm:text-2xl font-black text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
+            <h1 className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
               <CropIcon className="w-6 h-6 text-primary" />
               Image Cropper
             </h1>
-            <p className="text-zinc-500 dark:text-zinc-400">
+            <p className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">
               Crop, rotate, scale, and flip images inside your sandbox canvas.
             </p>
           </div>

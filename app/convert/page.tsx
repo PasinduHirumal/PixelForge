@@ -89,11 +89,11 @@ export default function ConvertPage() {
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="sm:text-2xl font-black text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
+            <h1 className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
               <RefreshCw className="w-5.5 h-5.5 text-primary animate-pulse-slow" />
               Image Converter
             </h1>
-            <p className="text-zinc-500 dark:text-zinc-400">
+            <p className="text-sm sm:text-base text-zinc-500 dark:text-zinc-400">
               Convert image extensions, optimize sizes, adjust background colors, and compress quality locally.
             </p>
           </div>

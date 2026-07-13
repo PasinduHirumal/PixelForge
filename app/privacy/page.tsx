@@ -32,7 +32,7 @@ export default function PrivacyPage() {
         <motion.h1
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-3xl sm:text-4xl font-black text-zinc-950 dark:text-zinc-50 flex items-center justify-center gap-2"
+          className="text-2xl sm:text-4xl font-black text-zinc-950 dark:text-zinc-50 flex items-center justify-center gap-2"
         >
           <FileText className="w-8 h-8 text-primary" />
           Privacy Policy
