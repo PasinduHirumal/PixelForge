@@ -1,6 +1,4 @@
-"use client";
-
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ArrowRight, Download, ImageIcon, RefreshCw, Sparkles, CheckCircle } from "lucide-react";
 import { FileMeta } from "../../types";
 import { formatBytes } from "../../utils/image";
@@ -28,7 +26,15 @@ export default function ConvertWorkspace({
   onDownload,
   loading,
 }: ConvertWorkspaceProps) {
-  
+  const [isImageLoading, setIsImageLoading] = useState(false);
+
+  // Trigger image loading overlay when converted URL changes
+  useEffect(() => {
+    if (convertedUrl) {
+      setIsImageLoading(true);
+    }
+  }, [convertedUrl]);
+
   // Calculate compression savings percentage
   const showStats = convertedBlob !== null;
   const originalSize = inputImage.size;
@@ -44,8 +50,8 @@ export default function ConvertWorkspace({
       <div className="glass-panel p-6 bg-white/50 dark:bg-zinc-950/40 border border-zinc-200/50 dark:border-zinc-800/40 rounded-3xl flex flex-col flex-grow shadow-inner min-h-[400px] md:min-h-[500px]">
         {loading ? (
           <div className="flex-grow flex flex-col items-center justify-center gap-4 text-center">
-            <div className="w-12 h-12 rounded-full border-t-indigo-600 animate-spin border-zinc-200 dark:border-zinc-800 border-t-indigo-400" />
-            <p className="font-semibold text-zinc-600 dark:text-zinc-400">
+            <div className="w-12 h-12 rounded-full border-4 border-zinc-200 dark:border-zinc-800 border-t-indigo-600 dark:border-t-indigo-400 animate-spin" />
+            <p className="font-semibold text-zinc-655 dark:text-zinc-400 animate-pulse">
               Performing format conversion & compression...
             </p>
           </div>
@@ -76,17 +82,32 @@ export default function ConvertWorkspace({
                 <span className="font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider text-center text-xs flex items-center justify-center gap-1">
                   Converted Preview <Sparkles className="w-3 h-3 text-amber-500" />
                 </span>
-                <div className="glass-panel p-2.5 bg-zinc-50/50 dark:bg-black/40 border border-indigo-500/30 dark:border-indigo-500/15 rounded-2xl flex items-center justify-center overflow-hidden h-[240px] md:h-[320px] shadow-lg shadow-indigo-500/5 relative">
+                <div className="glass-panel p-2.5 bg-zinc-50/50 dark:bg-black/40 border border-indigo-500/30 dark:border-indigo-500/15 rounded-2xl flex items-center justify-center overflow-hidden h-[240px] md:h-[320px] shadow-lg shadow-indigo-500/5 relative min-w-[200px]">
+                  
+                  {isImageLoading && (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 bg-white/80 dark:bg-zinc-950/80 z-10">
+                      <div className="w-8 h-8 rounded-full border-4 border-zinc-200 dark:border-zinc-800 border-t-indigo-600 dark:border-t-indigo-400 animate-spin" />
+                      <span className="text-[10px] font-semibold text-zinc-500 dark:text-zinc-450 animate-pulse">Rendering preview...</span>
+                    </div>
+                  )}
+
                   <img
                     src={convertedUrl}
                     alt="Converted Export"
-                    className="max-h-[220px] md:max-h-[300px] w-auto rounded-lg object-contain"
+                    onLoad={() => setIsImageLoading(false)}
+                    onError={() => setIsImageLoading(false)}
+                    className={cn(
+                      "max-h-[220px] md:max-h-[300px] w-auto rounded-lg object-contain transition-all duration-300",
+                      isImageLoading ? "opacity-0 scale-95" : "opacity-100 scale-100"
+                    )}
                   />
                   
                   {/* Format Badge */}
-                  <span className="absolute top-4 right-4 bg-indigo-600 text-white text-[9px] font-extrabold tracking-wider px-2 py-0.5 rounded-md uppercase">
-                    {settings.format}
-                  </span>
+                  {!isImageLoading && (
+                    <span className="absolute top-4 right-4 bg-indigo-600 text-white text-[9px] font-extrabold tracking-wider px-2 py-0.5 rounded-md uppercase">
+                      {settings.format}
+                    </span>
+                  )}
                 </div>
                 <div className="text-center text-[10px] text-zinc-500 dark:text-zinc-400 font-medium">
                   {settings.width}×{settings.height}px • {formatBytes(convertedBlob.size)}
