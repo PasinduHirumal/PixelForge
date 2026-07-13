@@ -32,7 +32,7 @@ export default function AboutPage() {
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-4xl sm:text-5xl font-black text-zinc-900 dark:text-zinc-50"
+          className="text-3xl sm:text-5xl font-black text-zinc-900 dark:text-zinc-50"
         >
           About{" "}
           <span className="text-gradient bg-gradient-to-r from-primary to-secondary">
@@ -43,7 +43,7 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed"
+          className="text-base sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed"
         >
           A premium, offline-first image cropping and conversion toolkit designed for developers, designer teams, and content creators who prioritize privacy and speed.
         </motion.p>
@@ -79,10 +79,10 @@ export default function AboutPage() {
         viewport={{ once: true }}
         className="glass-panel p-8 md:p-10 bg-white/60 dark:bg-zinc-900/20 border border-zinc-200/50 dark:border-zinc-800/40 shadow-xl flex flex-col gap-6"
       >
-        <h2 className="sm:text-2xl font-black text-zinc-900 dark:text-zinc-50">
+        <h2 className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-zinc-50">
           How It Works Under the Hood
         </h2>
-        <div className="flex flex-col gap-4 sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+        <div className="flex flex-col gap-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
           <p>
             When you select an image file inside PixelForge, the browser generates a local, virtual Object URL pointing to the file data in RAM. This URL is loaded into an off-screen HTML5 Image Node.
           </p>

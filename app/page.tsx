@@ -81,7 +81,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.1] text-zinc-950 dark:text-zinc-50"
+          className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tight leading-[1.1] text-zinc-950 dark:text-zinc-50"
         >
           Crop, Convert & Download{" "}
           <span className="text-gradient bg-gradient-to-r from-primary via-secondary to-accent">
@@ -94,7 +94,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="sm:text-lg md:text-xl text-zinc-650 dark:text-zinc-400 max-w-2xl leading-relaxed mt-2"
+          className="text-base sm:text-lg md:text-xl text-zinc-600 dark:text-zinc-400 max-w-2xl leading-relaxed mt-2"
         >
           Upload your images and crop or convert them directly inside your browser. No files are uploaded to any servers. Keep your files 100% private.
         </motion.p>
@@ -124,7 +124,7 @@ export default function Home() {
       {/* Features Grid */}
       <section className="flex flex-col gap-10">
         <div className="text-center flex flex-col gap-3">
-          <h2 className="sm:text-3xl font-black text-zinc-900 dark:text-zinc-50">
+          <h2 className="text-2xl sm:text-3xl font-black text-zinc-900 dark:text-zinc-50">
             Engineered for Creators & Developers
           </h2>
           <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 max-w-md mx-auto">
@@ -216,7 +216,7 @@ export default function Home() {
       {/* FAQ Section */}
       <section className="flex flex-col gap-10 max-w-3xl mx-auto w-full px-4">
         <div className="text-center flex flex-col gap-3">
-          <h2 className="sm:text-3xl font-black text-zinc-950 dark:text-zinc-50">
+          <h2 className="text-2xl sm:text-3xl font-black text-zinc-950 dark:text-zinc-50">
             Frequently Asked Questions
           </h2>
           <p className="text-xs sm:text-sm text-zinc-400">
@@ -250,7 +250,7 @@ export default function Home() {
                     isOpen ? "max-h-40 pb-5 opacity-100" : "max-h-0 opacity-0"
                   )}
                 >
-                  <p className="sm:text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed border-zinc-200/30 dark:border-zinc-800/30 pt-3">
+                  <p className="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed border-zinc-200/30 dark:border-zinc-800/30 pt-3">
                     {faq.answer}
                   </p>
                 </div>
