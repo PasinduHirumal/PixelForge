@@ -24,20 +24,20 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-zinc-950 border-zinc-200/50 border-zinc-900/50 transition-colors duration-300">
+    <footer className="w-full bg-zinc-50/50 dark:bg-zinc-950/50 border-t border-zinc-200/80 dark:border-zinc-900/50 backdrop-blur-md transition-colors duration-300">
       <div className="mx-auto max-w-7xl px-6 py-12 md:py-16 flex flex-col md:flex-row items-center justify-between gap-6">
         
         {/* Brand */}
         <div className="flex flex-col items-center md:items-start gap-2">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-6 h-6 rounded bg-gradient-to-tr from-primary to-secondary flex items-center justify-center">
+            <div className="w-6 h-6 rounded bg-gradient-to-tr from-primary to-secondary flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-300">
               <Crop className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="font-bold text-zinc-900 text-zinc-50">
+            <span className="font-bold text-zinc-900 dark:text-zinc-50 transition-colors">
               PixelForge
             </span>
           </Link>
-          <p className="text-zinc-500 text-zinc-500 max-w-sm text-center md:text-left mt-1">
+          <p className="text-zinc-600 dark:text-zinc-400 max-w-sm text-center md:text-left mt-1 text-sm transition-colors">
             Browser-based image suite for creators. Instant crops, custom conversions, zero server uploads.
           </p>
         </div>
@@ -46,50 +46,49 @@ export default function Footer() {
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-2 text-sm">
           <Link
             href="/crop"
-            className="text-zinc-500 hover:text-indigo-400 transition-colors"
+            className="text-zinc-500 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
           >
             Image Cropper
           </Link>
           <Link
             href="/convert"
-            className="text-zinc-500 hover:text-indigo-400 transition-colors"
+            className="text-zinc-500 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
           >
             Converter
           </Link>
           <Link
             href="/about"
-            className="text-zinc-500 hover:text-indigo-400 transition-colors"
+            className="text-zinc-500 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
           >
             About
           </Link>
           <Link
             href="/privacy"
-            className="text-zinc-500 hover:text-indigo-400 transition-colors"
+            className="text-zinc-500 dark:text-zinc-400 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
           >
             Privacy Policy
           </Link>
         </div>
 
         {/* Copyright & Source Code */}
-        <div className="flex flex-col items-center md:items-end gap-2 text-zinc-400 text-zinc-600">
+        <div className="flex flex-col items-center md:items-end gap-2 text-sm text-zinc-500 dark:text-zinc-400 transition-colors">
           <div className="flex items-center gap-1.5">
             <span>© {currentYear} PixelForge.</span>
-            <span className="text-zinc-800">|</span>
+            <span className="text-zinc-300 dark:text-zinc-800">|</span>
             <span className="flex items-center gap-1">
-              Made with <Heart className="w-3 h-3 text-rose-500 fill-rose-500" /> offline
+              Made with <Heart className="w-3 h-3 text-rose-500 fill-rose-500 animate-pulse" /> offline
             </span>
           </div>
           <a
             href="https://github.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-1 text-zinc-600 hover:text-zinc-400 transition-colors"
+            className="flex items-center gap-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
           >
             <GithubIcon className="w-3.5 h-3.5" />
             <span>Open Source</span>
           </a>
         </div>
-
 
       </div>
     </footer>

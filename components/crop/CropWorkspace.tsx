@@ -37,18 +37,18 @@ export default function CropWorkspace({
   const cropAspect = aspect.value === 0 ? undefined : aspect.value;
 
   return (
-    <div className="glass-panel relative flex flex-col flex-grow min-h-[400px] md:min-h-[500px] bg-zinc-950/40 border border-zinc-800/40 rounded-3xl shadow-inner overflow-hidden">
+    <div className="glass-panel relative flex flex-col flex-grow min-h-[400px] md:min-h-[500px] bg-white/50 dark:bg-zinc-950/40 border border-zinc-200/50 dark:border-zinc-800/40 rounded-3xl shadow-inner overflow-hidden">
       
       {/* Aspect Ratio Badge indicator */}
       <div className="absolute top-4 left-4 z-20 flex gap-2">
-        <span className="bg-zinc-900/90 backdrop-blur border border-zinc-800/50 font-bold text-zinc-500 text-zinc-400 px-3 py-1 rounded-full shadow-sm">
+        <span className="bg-zinc-900/90 backdrop-blur border border-zinc-800/50 font-bold text-zinc-300 dark:text-zinc-400 px-3 py-1 rounded-full shadow-sm">
           Preset: {aspect.label}
         </span>
-        <span className="bg-zinc-900/90 backdrop-blur border border-zinc-800/50 font-bold text-zinc-500 text-zinc-400 px-3 py-1 rounded-full shadow-sm">
+        <span className="bg-zinc-900/90 backdrop-blur border border-zinc-800/50 font-bold text-zinc-300 dark:text-zinc-400 px-3 py-1 rounded-full shadow-sm">
           Src: {image.width} × {image.height} px
         </span>
       </div>
-
+ 
       {/* Main Cropper Container */}
       <div className="relative w-full h-[400px] md:h-full flex-grow">
         <Cropper
@@ -77,9 +77,9 @@ export default function CropWorkspace({
           }}
         />
       </div>
-
+ 
       {/* Guide details */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 bg-zinc-900/80 backdrop-blur border border-zinc-800/50 text-[10px] font-semibold text-zinc-400 px-4 py-1.5 rounded-full shadow-lg">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 bg-zinc-900/90 dark:bg-zinc-900/80 backdrop-blur border border-zinc-800/40 text-[10px] font-semibold text-zinc-300 dark:text-zinc-400 px-4 py-1.5 rounded-full shadow-lg">
         Drag image to position • Pinch/Scroll to zoom
       </div>
 

@@ -93,11 +93,11 @@ export default function CropControls({
   };
 
   return (
-    <div className="glass-panel p-6 bg-zinc-900/40 border border-zinc-800/40 flex flex-col gap-6 w-full shadow-lg">
+    <div className="glass-panel p-6 bg-white/40 dark:bg-zinc-900/40 border border-zinc-200/50 dark:border-zinc-800/40 flex flex-col gap-6 w-full shadow-lg">
       
       {/* Top Toolbar: Undo, Redo, Reset */}
       <div className="flex items-center justify-between border-zinc-200/50 border-zinc-800/50 pb-4">
-        <h3 className="font-bold text-zinc-950 text-zinc-50">
+        <h3 className="font-bold text-zinc-900 dark:text-zinc-50">
           Adjustment Tools
         </h3>
         
@@ -106,7 +106,7 @@ export default function CropControls({
             onClick={undo}
             disabled={!canUndo}
             title="Undo"
-            className="w-8 h-8 rounded-full flex items-center justify-center text-zinc-400 hover:bg-zinc-800 disabled:opacity-30 disabled:hover:bg-transparent transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-full flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 disabled:hover:bg-transparent transition-colors cursor-pointer"
           >
             <Undo2 className="w-4.5 h-4.5" />
           </button>
@@ -114,15 +114,15 @@ export default function CropControls({
             onClick={redo}
             disabled={!canRedo}
             title="Redo"
-            className="w-8 h-8 rounded-full flex items-center justify-center text-zinc-400 hover:bg-zinc-800 disabled:opacity-30 disabled:hover:bg-transparent transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-full flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 disabled:opacity-30 disabled:hover:bg-transparent transition-colors cursor-pointer"
           >
             <Redo2 className="w-4.5 h-4.5" />
           </button>
-          <div className="w-[1px] h-4 bg-zinc-800 mx-1" />
+          <div className="w-[1px] h-4 bg-zinc-200 dark:bg-zinc-800 mx-1" />
           <button
             onClick={reset}
             title="Reset Settings"
-            className="w-8 h-8 rounded-full flex items-center justify-center text-zinc-400 hover:bg-zinc-800 transition-colors cursor-pointer"
+            className="w-8 h-8 rounded-full flex items-center justify-center text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors cursor-pointer"
           >
             <RotateCcw className="w-4.5 h-4.5" />
           </button>
@@ -140,7 +140,7 @@ export default function CropControls({
         
         {/* Dimensions Inputs */}
         <div className="flex flex-col gap-2">
-          <span className="font-semibold text-zinc-500 text-zinc-400">
+          <span className="font-semibold text-zinc-500 dark:text-zinc-400">
             Output Resolution (px)
           </span>
           <div className="flex items-center gap-3">
@@ -165,8 +165,8 @@ export default function CropControls({
               className={cn(
                 "w-9 h-9 rounded-xl flex items-center justify-center border transition-all cursor-pointer",
                 keepRatio
-                  ? "text-primary border-indigo-950/30 bg-indigo-950/20"
-                  : "border-zinc-800 text-zinc-400 hover:text-zinc-200"
+                  ? "text-primary border-indigo-100 bg-indigo-50/50 dark:border-indigo-950/30 dark:bg-indigo-950/20"
+                  : "border-zinc-200 dark:border-zinc-800 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-zinc-200"
               )}
             >
               {keepRatio ? <Lock className="w-4 h-4" /> : <Unlock className="w-4 h-4" />}
@@ -220,7 +220,7 @@ export default function CropControls({
 
         {/* Flipping Buttons */}
         <div className="flex flex-col gap-2">
-          <span className="font-semibold text-zinc-500 text-zinc-400">
+          <span className="font-semibold text-zinc-500 dark:text-zinc-400">
             Flip Image
           </span>
           <div className="grid grid-cols-2 gap-3">
@@ -229,8 +229,8 @@ export default function CropControls({
               className={cn(
                 "py-2.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-semibold transition-all cursor-pointer",
                 flipH
-                  ? "text-primary border-indigo-950/30 bg-indigo-950/20"
-                  : "border-zinc-800 hover:bg-zinc-900 text-zinc-400"
+                  ? "text-primary border-indigo-100 bg-indigo-50/50 dark:border-indigo-950/30 dark:bg-indigo-950/20"
+                  : "border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-500 dark:text-zinc-400"
               )}
             >
               <FlipHorizontal className="w-4 h-4" />
@@ -241,8 +241,8 @@ export default function CropControls({
               className={cn(
                 "py-2.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-semibold transition-all cursor-pointer",
                 flipV
-                  ? "text-primary border-indigo-950/30 bg-indigo-950/20"
-                  : "border-zinc-800 hover:bg-zinc-900 text-zinc-400"
+                  ? "text-primary border-indigo-100 bg-indigo-50/50 dark:border-indigo-950/30 dark:bg-indigo-950/20"
+                  : "border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-500 dark:text-zinc-400"
               )}
             >
               <FlipVertical className="w-4 h-4" />
