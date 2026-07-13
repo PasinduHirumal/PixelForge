@@ -12,6 +12,7 @@ import CropWorkspace from "../../components/crop/CropWorkspace";
 import CropControls from "../../components/crop/CropControls";
 import CropPreview from "../../components/crop/CropPreview";
 import { getCroppedImg } from "../../utils/canvas";
+import { convertImage } from "../../utils/converter";
 import Button from "../../components/shared/Button";
 
 export default function CropPage() {
@@ -77,8 +78,29 @@ export default function CropPage() {
     }
   };
 
-  const handleDownload = (blob: Blob, filename: string, suffix: string, format: string) => {
-    const ok = downloadFile(blob, filename, suffix, format);
+  const handleDownload = async (
+    blob: Blob,
+    filename: string,
+    suffix: string,
+    format: string,
+    quality: number
+  ) => {
+    let finalBlob = blob;
+
+    if (format !== "png") {
+      setCropLoading(true);
+      try {
+        const imageUrl = URL.createObjectURL(blob);
+        finalBlob = await convertImage(imageUrl, format, quality);
+        URL.revokeObjectURL(imageUrl);
+      } catch (err) {
+        console.error("Conversion failed during download", err);
+      } finally {
+        setCropLoading(false);
+      }
+    }
+
+    const ok = downloadFile(finalBlob, filename, suffix, format);
     if (ok) {
       success("Downloaded", "Image downloaded to your device!");
       setIsPreviewOpen(false);

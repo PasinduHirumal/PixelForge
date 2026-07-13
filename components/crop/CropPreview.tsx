@@ -15,7 +15,13 @@ interface CropPreviewProps {
   onClose: () => void;
   croppedBlob: Blob | null;
   originalFilename: string;
-  onDownload: (blob: Blob, filename: string, suffix: string, format: string) => void;
+  onDownload: (
+    blob: Blob,
+    filename: string,
+    suffix: string,
+    format: string,
+    quality: number
+  ) => void;
   targetWidth: number;
   targetHeight: number;
 }
@@ -53,12 +59,12 @@ export default function CropPreview({
 
   const handleDownloadClick = () => {
     if (croppedBlob) {
-      onDownload(croppedBlob, filename, "", format);
+      onDownload(croppedBlob, filename, "", format, quality);
     }
   };
 
   const formatOptions = OUTPUT_FORMATS.filter(
-    (f) => ["png", "jpg", "webp", "avif"].includes(f.value)
+    (f) => ["png", "jpg", "webp", "avif", "svg", "ico"].includes(f.value)
   ).map((f) => ({
     label: f.label,
     value: f.value,

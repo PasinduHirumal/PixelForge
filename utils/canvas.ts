@@ -133,7 +133,12 @@ export async function getConvertedImg(
   canvas.height = outputHeight;
 
   // Handle transparency fill for formats that don't support alpha (like JPEG/JPG)
-  const supportsAlpha = targetMimeType === "image/png" || targetMimeType === "image/webp" || targetMimeType === "image/gif";
+  const supportsAlpha =
+    targetMimeType === "image/png" ||
+    targetMimeType === "image/webp" ||
+    targetMimeType === "image/gif" ||
+    targetMimeType === "image/svg+xml" ||
+    targetMimeType === "image/x-icon";
   if (!supportsAlpha || transparentColor !== "transparent") {
     ctx.fillStyle = transparentColor === "black" ? "#000000" : "#FFFFFF";
     ctx.fillRect(0, 0, outputWidth, outputHeight);
@@ -143,6 +148,15 @@ export async function getConvertedImg(
   ctx.drawImage(image, 0, 0, outputWidth, outputHeight);
 
   // Export to Blob
+  if (targetMimeType === "image/svg+xml") {
+    const pngDataUrl = canvas.toDataURL("image/png");
+    const svgString = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${outputWidth} ${outputHeight}" width="${outputWidth}" height="${outputHeight}">
+  <image href="${pngDataUrl}" x="0" y="0" width="${outputWidth}" height="${outputHeight}" />
+</svg>`;
+    const svgBlob = new Blob([svgString], { type: "image/svg+xml" });
+    return svgBlob;
+  }
+
   return new Promise((resolve, reject) => {
     canvas.toBlob(
       (blob) => {
