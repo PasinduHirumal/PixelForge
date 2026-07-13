@@ -101,7 +101,7 @@ export default function Select<T>({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
-            className="absolute left-0 right-0 top-[calc(100%+6px)] z-50 glass-panel bg-white/95 dark:bg-zinc-950/95 border border-white/40 dark:border-zinc-900/50 max-h-64 overflow-y-auto p-1.5 shadow-xl rounded-2xl"
+            className="absolute left-0 right-0 top-[calc(100%+6px)] z-50 bg-white dark:bg-zinc-950 border border-zinc-200 dark:border-zinc-800/80 max-h-64 overflow-y-auto p-1.5 shadow-xl rounded-2xl"
           >
             {Object.entries(categories).map(([category, items]) => (
               <div key={category} className="mb-2 last:mb-0">

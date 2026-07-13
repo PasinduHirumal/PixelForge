@@ -66,16 +66,16 @@ export default function ConvertPage() {
         <div className="flex items-center gap-3">
           <Link
             href="/"
-            className="w-10 h-10 rounded-full flex items-center justify-center border border-zinc-800/50 text-zinc-400 hover:bg-zinc-900 transition-colors cursor-pointer"
+            className="w-10 h-10 rounded-full flex items-center justify-center border border-zinc-200 dark:border-zinc-800/50 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="sm:text-2xl font-black text-zinc-950 text-zinc-50 flex items-center gap-2">
+            <h1 className="sm:text-2xl font-black text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
               <RefreshCw className="w-5.5 h-5.5 text-primary animate-pulse-slow" />
               Image Converter
             </h1>
-            <p className="text-zinc-500 text-zinc-400">
+            <p className="text-zinc-500 dark:text-zinc-400">
               Convert image extensions, optimize sizes, adjust background colors, and compress quality locally.
             </p>
           </div>
@@ -89,7 +89,7 @@ export default function ConvertPage() {
               clearImage();
               reset();
             }}
-            className="self-start md:self-auto border border-zinc-800 hover:bg-zinc-900 cursor-pointer"
+            className="self-start md:self-auto border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 cursor-pointer"
           >
             Upload Different Image
           </Button>

@@ -51,9 +51,9 @@ export default function Slider({
 
   return (
     <div className={cn("flex flex-col gap-2 w-full", className)}>
-      <div className="flex justify-between items-center font-semibold text-zinc-500 text-zinc-400">
+      <div className="flex justify-between items-center font-semibold text-zinc-500 dark:text-zinc-400">
         <span>{label}</span>
-        <span className="font-mono bg-indigo-950/30 text-indigo-400 px-2 py-0.5 rounded-md">
+        <span className="font-mono bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 px-2 py-0.5 rounded-md">
           {valueDisplay(value)}
         </span>
       </div>
@@ -67,7 +67,7 @@ export default function Slider({
 
         <div className="relative flex-grow flex items-center h-5 group">
           {/* Custom Track Background */}
-          <div className="absolute left-0 right-0 h-1.5 rounded-full bg-zinc-800 pointer-events-none" />
+          <div className="absolute left-0 right-0 h-1.5 rounded-full bg-zinc-200 dark:bg-zinc-800 pointer-events-none" />
           
           {/* Custom Track Fill */}
           <div
@@ -84,12 +84,12 @@ export default function Slider({
             onChange={handleChange}
             onMouseUp={handleMouseUp}
             onTouchEnd={handleTouchEnd}
-            className="absolute w-full h-full opacity-0 cursor-pointer z-10"
+            className="absolute w-full h-full opacity-0 cursor-pointer z-10 appearance-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:h-8 [&::-webkit-slider-thumb]:rounded-full [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-8 [&::-moz-range-thumb]:h-8 [&::-moz-range-thumb]:rounded-full"
           />
 
           {/* Custom Thumb indicator */}
           <div
-            className="absolute w-4 h-4 rounded-full bg-zinc-50 border-indigo-600 border-indigo-400 shadow-md group-hover:scale-110 group-active:scale-95 transition-all pointer-events-none"
+            className="absolute w-4 h-4 rounded-full bg-zinc-50 border border-indigo-600 dark:border-indigo-400 shadow-md group-hover:scale-110 group-active:scale-95 transition-all pointer-events-none"
             style={{
               left: `calc(${percentage}% - 8px)`,
             }}

@@ -63,10 +63,10 @@ export default function CropWorkspace({
           onZoomChange={setZoom}
           onCropComplete={onCropComplete}
           transform={
-            // react-easy-crop supports custom transform overrides for flips
-            `translate(${crop.x}px, ${crop.y}px) rotate(${rotation}deg) scale(${
+            // react-easy-crop supports custom transform overrides for flips and zoom
+            `translate(${crop.x}px, ${crop.y}px) rotate(${rotation}deg) scale(${zoom}) scaleX(${
               flipH ? -1 : 1
-            }, ${flipV ? -1 : 1})`
+            }) scaleY(${flipV ? -1 : 1})`
           }
           classes={{
             containerClassName: "react-easy-crop_Container",

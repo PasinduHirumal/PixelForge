@@ -46,22 +46,22 @@ export default function ConvertSettings({
   };
 
   return (
-    <div className="glass-panel p-6 bg-zinc-900/40 border border-zinc-800/40 flex flex-col gap-6 w-full shadow-lg">
+    <div className="glass-panel p-6 bg-white/40 dark:bg-zinc-900/40 border border-zinc-200/50 dark:border-zinc-800/40 flex flex-col gap-6 w-full shadow-lg">
       
       {/* File Info */}
       <div className="flex flex-col gap-3 pb-4 border-zinc-200/50 border-zinc-800/50">
-        <h3 className="font-bold text-zinc-950 text-zinc-50">
+        <h3 className="font-bold text-zinc-900 dark:text-zinc-50">
           Source File Metadata
         </h3>
-        <div className="flex items-center gap-3 bg-zinc-950/40 p-3 rounded-2xl border border-zinc-800/30">
-          <div className="w-10 h-10 rounded-xl bg-zinc-800 flex items-center justify-center text-indigo-400">
+        <div className="flex items-center gap-3 bg-zinc-50 dark:bg-zinc-950/40 p-3 rounded-2xl border border-zinc-200 dark:border-zinc-800/30">
+          <div className="w-10 h-10 rounded-xl bg-zinc-100 dark:bg-zinc-800 flex items-center justify-center text-indigo-600 dark:text-indigo-400">
             <ImageIcon className="w-5 h-5" />
           </div>
           <div className="flex-grow min-w-0">
-            <p className="font-semibold text-zinc-800 text-zinc-200 truncate">
+            <p className="font-semibold text-zinc-800 dark:text-zinc-200 truncate">
               {inputImage.name}
             </p>
-            <p className="text-[10px] text-zinc-400 mt-0.5">
+            <p className="text-[10px] text-zinc-500 dark:text-zinc-400 mt-0.5">
               {inputExt?.toUpperCase()} • {formatBytes(inputImage.size)} • {inputImage.width}x{inputImage.height}px
             </p>
           </div>
@@ -79,7 +79,7 @@ export default function ConvertSettings({
         
         {/* Filename Rename */}
         <div className="flex flex-col gap-1.5">
-          <label className="font-semibold text-zinc-500 text-zinc-400">
+          <label className="font-semibold text-zinc-500 dark:text-zinc-400">
             Output Filename
           </label>
           <input
@@ -108,7 +108,7 @@ export default function ConvertSettings({
       {/* Transparency / Background Handling */}
       {showAlphaSettings && (
         <div className="flex flex-col gap-2">
-          <span className="font-semibold text-zinc-500 text-zinc-400">
+          <span className="font-semibold text-zinc-500 dark:text-zinc-400">
             Fill Transparency background
           </span>
           <div className="grid grid-cols-2 gap-3">
@@ -117,8 +117,8 @@ export default function ConvertSettings({
               className={cn(
                 "py-2.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-semibold transition-all cursor-pointer",
                 settings.transparentColor === "white"
-                  ? "text-primary border-indigo-950/30 bg-indigo-950/20"
-                  : "border-zinc-800 hover:bg-zinc-900 text-zinc-400"
+                  ? "text-primary border-indigo-100 bg-indigo-50/50 dark:border-indigo-950/30 dark:bg-indigo-950/20"
+                  : "border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-500 dark:text-zinc-400"
               )}
             >
               <div className="w-3.5 h-3.5 rounded-full bg-white border border-zinc-300" />
@@ -129,8 +129,8 @@ export default function ConvertSettings({
               className={cn(
                 "py-2.5 rounded-xl border flex items-center justify-center gap-2 text-xs font-semibold transition-all cursor-pointer",
                 settings.transparentColor === "black"
-                  ? "text-primary border-indigo-950/30 bg-indigo-950/20"
-                  : "border-zinc-800 hover:bg-zinc-900 text-zinc-400"
+                  ? "text-primary border-indigo-100 bg-indigo-50/50 dark:border-indigo-950/30 dark:bg-indigo-950/20"
+                  : "border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-500 dark:text-zinc-400"
               )}
             >
               <div className="w-3.5 h-3.5 rounded-full bg-black border border-zinc-700" />
@@ -142,7 +142,7 @@ export default function ConvertSettings({
 
       {/* Image Size customization */}
       <div className="flex flex-col gap-3.5 border-zinc-200/50 border-zinc-800/50 pt-5">
-        <span className="font-semibold text-zinc-500 text-zinc-400">
+        <span className="font-semibold text-zinc-500 dark:text-zinc-400">
           Output Resolution Scaling
         </span>
 
@@ -152,8 +152,8 @@ export default function ConvertSettings({
             className={cn(
               "py-2 rounded-xl border text-xs font-semibold transition-all cursor-pointer",
               settings.resizeMode === "original"
-                ? "text-primary border-indigo-950/30 bg-indigo-950/20"
-                : "border-zinc-800 hover:bg-zinc-900 text-zinc-400"
+                ? "text-primary border-indigo-100 bg-indigo-50/50 dark:border-indigo-950/30 dark:bg-indigo-950/20"
+                : "border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-500 dark:text-zinc-400"
             )}
           >
             Original Dimensions
@@ -163,8 +163,8 @@ export default function ConvertSettings({
             className={cn(
               "py-2 rounded-xl border text-xs font-semibold transition-all cursor-pointer",
               settings.resizeMode === "custom"
-                ? "text-primary border-indigo-950/30 bg-indigo-950/20"
-                : "border-zinc-800 hover:bg-zinc-900 text-zinc-400"
+                ? "text-primary border-indigo-100 bg-indigo-50/50 dark:border-indigo-950/30 dark:bg-indigo-950/20"
+                : "border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-500 dark:text-zinc-400"
             )}
           >
             Resize Scaling
@@ -193,8 +193,8 @@ export default function ConvertSettings({
               className={cn(
                 "w-8 h-8 rounded-xl flex items-center justify-center border transition-all cursor-pointer",
                 settings.keepRatio
-                  ? "text-primary border-indigo-950/30 bg-indigo-950/20"
-                  : "border-zinc-800 text-zinc-400 hover:text-zinc-200"
+                  ? "text-primary border-indigo-100 bg-indigo-50/50 dark:border-indigo-950/30 dark:bg-indigo-950/20"
+                  : "border-zinc-200 dark:border-zinc-800 text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-zinc-900 hover:text-zinc-900 dark:hover:text-zinc-200"
               )}
             >
               {settings.keepRatio ? <Lock className="w-3.5 h-3.5" /> : <Unlock className="w-3.5 h-3.5" />}
