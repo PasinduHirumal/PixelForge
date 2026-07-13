@@ -82,7 +82,7 @@ export default function CropPage() {
         !!aspect.isCircle,
         { width: customWidth, height: customHeight }
       );
-      
+
       setCroppedBlob(cropped);
       setIsPreviewOpen(true);
       setCropLoading(false);
@@ -126,8 +126,8 @@ export default function CropPage() {
   };
 
   return (
-    <div className="flex flex-col gap-8 py-4 flex-grow">
-      
+    <div className="flex flex-col gap-8">
+
       {/* Header breadcrumb row */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
@@ -153,7 +153,7 @@ export default function CropPage() {
             variant="ghost"
             size="sm"
             onClick={clearImage}
-            className="self-start md:self-auto border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 cursor-pointer"
+            className="self-end md:self-auto border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 cursor-pointer"
           >
             Upload Different Image
           </Button>

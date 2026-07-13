@@ -30,10 +30,10 @@ export default function Footer() {
         {/* Brand */}
         <div className="flex flex-col items-center md:items-start gap-2">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-6 h-6 rounded bg-gradient-to-tr from-primary to-secondary flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-300">
-              <Crop className="w-3.5 h-3.5 text-white" />
+            <div className="w-9 h-9 rounded-full flex items-center justify-center shadow-sm group-hover:scale-105 transition-transform duration-300">
+              <img src="/logo.png" alt="PixelForge Logo" />
             </div>
-            <span className="font-bold text-zinc-900 dark:text-zinc-50 transition-colors">
+            <span className="font-bold text-3xl tracking-tight text-gradient bg-gradient-to-r from-primary to-secondary">
               PixelForge
             </span>
           </Link>

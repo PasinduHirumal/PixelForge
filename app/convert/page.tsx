@@ -17,7 +17,7 @@ import Button from "../../components/shared/Button";
 export default function ConvertPage() {
   const { success, error: toastError } = useToast();
   const { image, loading: uploadLoading, error: uploadError, handleFile, clearImage } = useImageUpload(50);
-  
+
   const {
     settings,
     updateSetting,
@@ -77,8 +77,8 @@ export default function ConvertPage() {
   };
 
   return (
-    <div className="flex flex-col gap-8 py-4 flex-grow">
-      
+    <div className="flex flex-col gap-8 flex-grow">
+
       {/* Header Breadcrumbs Row */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div className="flex items-center gap-3">
@@ -107,7 +107,7 @@ export default function ConvertPage() {
               clearImage();
               reset();
             }}
-            className="self-start md:self-auto border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 cursor-pointer"
+            className="self-end md:self-auto border border-zinc-200 dark:border-zinc-800 hover:bg-zinc-100 dark:hover:bg-zinc-900 text-zinc-700 dark:text-zinc-300 cursor-pointer"
           >
             Upload Different Image
           </Button>

@@ -26,7 +26,7 @@ export default function PrivacyPage() {
   ];
 
   return (
-    <div className="max-w-3xl mx-auto py-10 md:py-16 flex flex-col gap-12 px-4">
+    <div className="max-w-3xl mx-auto flex flex-col gap-12 px-4">
       {/* Header */}
       <section className="text-center flex flex-col gap-4">
         <motion.h1
@@ -82,7 +82,7 @@ export default function PrivacyPage() {
         <h2 className="text-base sm:text-lg font-bold text-zinc-950 dark:text-zinc-50">
           Frequently Clarified Points
         </h2>
-        
+
         <div className="flex flex-col gap-4">
           <div>
             <h3 className="font-bold text-zinc-800 dark:text-zinc-200 mb-1">

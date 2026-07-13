@@ -24,10 +24,10 @@ export default function Navbar() {
       <nav className="mx-auto max-w-7xl glass-panel bg-white/70 dark:bg-zinc-950/70 border border-white/30 dark:border-zinc-900/30 backdrop-blur-md px-6 py-3.5 flex items-center justify-between shadow-lg">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-primary to-secondary flex items-center justify-center shadow-md shadow-indigo-500/25 group-hover:scale-105 transition-transform duration-300">
-            <Crop className="w-4.5 h-4.5 text-white" />
+          <div className="w-8 h-8 rounded-full bg-gradient-to-tr flex items-center justify-center shadow-md shadow-indigo-500/25 group-hover:scale-105 transition-transform duration-300">
+            <img src="/logo.png" alt="PixelForge Logo" />
           </div>
-          <span className="font-bold text-xl tracking-tight text-gradient bg-gradient-to-r from-primary to-secondary">
+          <span className="font-bold text-2xl sm:text-3xl tracking-tight text-gradient bg-gradient-to-r from-primary to-secondary">
             PixelForge
           </span>
         </Link>

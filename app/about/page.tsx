@@ -26,13 +26,13 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="max-w-4xl mx-auto py-10 md:py-16 flex flex-col gap-16 px-4">
+    <div className="max-w-4xl mx-auto flex flex-col gap-16 px-4">
       {/* Title */}
       <section className="text-center flex flex-col gap-4">
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="sm:text-5xl font-black text-zinc-900 dark:text-zinc-50"
+          className="text-4xl sm:text-5xl font-black text-zinc-900 dark:text-zinc-50"
         >
           About{" "}
           <span className="text-gradient bg-gradient-to-r from-primary to-secondary">
