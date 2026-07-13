@@ -2,6 +2,7 @@
 
 import React from "react";
 import { cn } from "../../lib/utils";
+import { useTheme } from "./ThemeProvider";
 
 interface SliderProps {
   label: string;
@@ -30,6 +31,8 @@ export default function Slider({
   iconRight,
   className,
 }: SliderProps) {
+  const { theme } = useTheme();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(Number(e.target.value));
   };
@@ -46,14 +49,14 @@ export default function Slider({
     }
   };
 
-  // Calculate percentage of track filled
   const percentage = ((value - min) / (max - min)) * 100;
+  const trackBg = theme === "dark" ? "#27272a" : "#e2e8f0";
 
   return (
     <div className={cn("flex flex-col gap-2 w-full", className)}>
       <div className="flex justify-between items-center font-semibold text-zinc-500 dark:text-zinc-400">
         <span>{label}</span>
-        <span className="font-mono bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 px-2 py-0.5 rounded-md">
+        <span className="font-mono bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 px-2 py-0.5 rounded-md text-xs">
           {valueDisplay(value)}
         </span>
       </div>
@@ -65,16 +68,7 @@ export default function Slider({
           </div>
         )}
 
-        <div className="relative flex-grow flex items-center h-5 group">
-          {/* Custom Track Background */}
-          <div className="absolute left-0 right-0 h-1.5 rounded-full bg-zinc-200 dark:bg-zinc-800 pointer-events-none" />
-          
-          {/* Custom Track Fill */}
-          <div
-            className="absolute left-0 h-1.5 rounded-full bg-gradient-to-r from-primary to-secondary pointer-events-none"
-            style={{ width: `${percentage}%` }}
-          />
-
+        <div className="relative flex-grow flex items-center h-5">
           <input
             type="range"
             min={min}
@@ -84,15 +78,10 @@ export default function Slider({
             onChange={handleChange}
             onMouseUp={handleMouseUp}
             onTouchEnd={handleTouchEnd}
-            className="absolute w-full h-full opacity-0 cursor-pointer z-10 appearance-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-8 [&::-webkit-slider-thumb]:h-8 [&::-webkit-slider-thumb]:rounded-full [&::-moz-range-thumb]:appearance-none [&::-moz-range-thumb]:w-8 [&::-moz-range-thumb]:h-8 [&::-moz-range-thumb]:rounded-full"
-          />
-
-          {/* Custom Thumb indicator */}
-          <div
-            className="absolute w-4 h-4 rounded-full bg-zinc-50 border border-indigo-600 dark:border-indigo-400 shadow-md group-hover:scale-110 group-active:scale-95 transition-all pointer-events-none"
             style={{
-              left: `calc(${percentage}% - 8px)`,
+              background: `linear-gradient(to right, #4F46E5 0%, #7C3AED ${percentage}%, ${trackBg} ${percentage}%, ${trackBg} 100%)`,
             }}
+            className="w-full h-1.5 rounded-full appearance-none cursor-pointer focus:outline-none [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4.5 [&::-webkit-slider-thumb]:h-4.5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-indigo-600 [&::-webkit-slider-thumb]:shadow-md [&::-webkit-slider-thumb]:transition-all [&::-webkit-slider-thumb]:hover:scale-110 [&::-webkit-slider-thumb]:active:scale-95 [&::-moz-range-thumb]:w-4.5 [&::-moz-range-thumb]:h-4.5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-white [&::-moz-range-thumb]:border-2 [&::-moz-range-thumb]:border-indigo-600 [&::-moz-range-thumb]:shadow-md [&::-moz-range-thumb]:transition-all [&::-moz-range-thumb]:hover:scale-110 [&::-moz-range-thumb]:active:scale-95"
           />
         </div>
 

@@ -32,7 +32,7 @@ export default function AboutPage() {
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="sm:text-5xl font-black text-zinc-950 text-zinc-50"
+          className="sm:text-5xl font-black text-zinc-900 dark:text-zinc-50"
         >
           About{" "}
           <span className="text-gradient bg-gradient-to-r from-primary to-secondary">
@@ -43,7 +43,7 @@ export default function AboutPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="sm:text-lg text-zinc-500 text-zinc-400 max-w-2xl mx-auto leading-relaxed"
+          className="sm:text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto leading-relaxed"
         >
           A premium, offline-first image cropping and conversion toolkit designed for developers, designer teams, and content creators who prioritize privacy and speed.
         </motion.p>
@@ -57,15 +57,15 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 + index * 0.1 }}
-            className="glass-panel p-6 bg-zinc-900/20 border border-zinc-800/40 shadow-lg flex flex-col gap-4"
+            className="glass-panel p-6 bg-white/60 dark:bg-zinc-900/20 border border-zinc-200/50 dark:border-zinc-800/40 shadow-lg flex flex-col gap-4"
           >
-            <div className="w-12 h-12 rounded-xl bg-zinc-950/40 border border-zinc-800/30 flex items-center justify-center">
+            <div className="w-12 h-12 rounded-xl bg-zinc-100 dark:bg-zinc-950/40 border border-zinc-200 dark:border-zinc-800/30 flex items-center justify-center">
               {item.icon}
             </div>
-            <h3 className="font-bold text-zinc-900 text-zinc-200">
+            <h3 className="font-bold text-zinc-900 dark:text-zinc-200">
               {item.title}
             </h3>
-            <p className="text-zinc-500 text-zinc-400 leading-relaxed">
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm">
               {item.description}
             </p>
           </motion.div>
@@ -77,12 +77,12 @@ export default function AboutPage() {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="glass-panel p-8 md:p-10 bg-zinc-900/20 border border-zinc-800/40 shadow-xl flex flex-col gap-6"
+        className="glass-panel p-8 md:p-10 bg-white/60 dark:bg-zinc-900/20 border border-zinc-200/50 dark:border-zinc-800/40 shadow-xl flex flex-col gap-6"
       >
-        <h2 className="sm:text-2xl font-black text-zinc-950 text-zinc-50">
+        <h2 className="sm:text-2xl font-black text-zinc-900 dark:text-zinc-50">
           How It Works Under the Hood
         </h2>
-        <div className="flex flex-col gap-4 sm:text-sm text-zinc-500 text-zinc-400 leading-relaxed">
+        <div className="flex flex-col gap-4 sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
           <p>
             When you select an image file inside PixelForge, the browser generates a local, virtual Object URL pointing to the file data in RAM. This URL is loaded into an off-screen HTML5 Image Node.
           </p>
@@ -97,7 +97,7 @@ export default function AboutPage() {
 
       {/* Quote */}
       <section className="text-center py-6 border-zinc-200/50 border-zinc-900/50">
-        <p className="text-zinc-400 text-zinc-600 flex items-center justify-center gap-1.5 font-medium">
+        <p className="text-zinc-500 dark:text-zinc-400 flex items-center justify-center gap-1.5 font-medium text-sm">
           <Globe className="w-3.5 h-3.5" /> Made for the decentralized, privacy-respecting web. No cookies, no trackers.
         </p>
       </section>

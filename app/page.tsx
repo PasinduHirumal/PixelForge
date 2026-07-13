@@ -68,10 +68,10 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4 }}
-          className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-indigo-950/30 border border-indigo-900/40 shadow-sm"
+          className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/30 border border-indigo-100 dark:border-indigo-900/40 shadow-sm"
         >
-          <Sparkles className="w-3.5 h-3.5 text-primary" />
-          <span className="font-bold text-primary text-indigo-400">
+          <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+          <span className="font-bold text-indigo-600 dark:text-indigo-400">
             100% Client-Side & Private
           </span>
         </motion.div>
@@ -94,7 +94,7 @@ export default function Home() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="sm:text-lg md:text-xl text-zinc-500 text-zinc-400 max-w-2xl leading-relaxed mt-2"
+          className="sm:text-lg md:text-xl text-zinc-650 dark:text-zinc-400 max-w-2xl leading-relaxed mt-2"
         >
           Upload your images and crop or convert them directly inside your browser. No files are uploaded to any servers. Keep your files 100% private.
         </motion.p>
@@ -124,10 +124,10 @@ export default function Home() {
       {/* Features Grid */}
       <section className="flex flex-col gap-10">
         <div className="text-center flex flex-col gap-3">
-          <h2 className="sm:text-3xl font-black text-zinc-950 text-zinc-50">
+          <h2 className="sm:text-3xl font-black text-zinc-900 dark:text-zinc-50">
             Engineered for Creators & Developers
           </h2>
-          <p className="text-xs sm:text-sm text-zinc-400 max-w-md mx-auto">
+          <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 max-w-md mx-auto">
             Experience desktop-grade image processing right inside the web.
           </p>
         </div>
@@ -142,16 +142,16 @@ export default function Home() {
           {/* Card 1 */}
           <motion.div
             variants={itemVariants}
-            className="glass-panel p-6 bg-zinc-900/20 border border-zinc-800/40 hover:border-indigo-900/50 transition-all duration-300 shadow-lg flex flex-col gap-4 group"
+            className="glass-panel p-6 bg-white/60 dark:bg-zinc-900/20 border border-zinc-200/50 dark:border-zinc-800/40 hover:border-indigo-400 dark:hover:border-indigo-900/50 transition-all duration-300 shadow-lg flex flex-col gap-4 group"
           >
-            <div className="w-10 h-10 rounded-xl bg-indigo-950/30 text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+            <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform">
               <Crop className="w-5 h-5" />
             </div>
             <div>
               <h3 className="font-bold text-zinc-900 dark:text-zinc-100">
                 Precision Crop
               </h3>
-              <p className="text-zinc-500 text-zinc-400 leading-relaxed mt-2">
+              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed mt-2 text-sm">
                 Crop with free dimensions or standard presets for social banners, circle avatars, and paper templates.
               </p>
             </div>
@@ -160,16 +160,16 @@ export default function Home() {
           {/* Card 2 */}
           <motion.div
             variants={itemVariants}
-            className="glass-panel p-6 bg-zinc-900/20 border border-zinc-800/40 hover:border-indigo-900/50 transition-all duration-300 shadow-lg flex flex-col gap-4 group"
+            className="glass-panel p-6 bg-white/60 dark:bg-zinc-900/20 border border-zinc-200/50 dark:border-zinc-800/40 hover:border-indigo-400 dark:hover:border-indigo-900/50 transition-all duration-300 shadow-lg flex flex-col gap-4 group"
           >
-            <div className="w-10 h-10 rounded-xl bg-indigo-950/30 text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+            <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform">
               <RefreshCw className="w-5 h-5" />
             </div>
             <div>
               <h3 className="font-bold text-zinc-900 dark:text-zinc-100">
                 Format Converter
               </h3>
-              <p className="text-zinc-500 text-zinc-400 leading-relaxed mt-2">
+              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed mt-2 text-sm">
                 Convert files instantly to next-gen formats like WebP and AVIF, or classic PNG, JPEG, BMP, and ICO.
               </p>
             </div>
@@ -178,16 +178,16 @@ export default function Home() {
           {/* Card 3 */}
           <motion.div
             variants={itemVariants}
-            className="glass-panel p-6 bg-zinc-900/20 border border-zinc-800/40 hover:border-indigo-900/50 transition-all duration-300 shadow-lg flex flex-col gap-4 group"
+            className="glass-panel p-6 bg-white/60 dark:bg-zinc-900/20 border border-zinc-200/50 dark:border-zinc-800/40 hover:border-indigo-400 dark:hover:border-indigo-900/50 transition-all duration-300 shadow-lg flex flex-col gap-4 group"
           >
-            <div className="w-10 h-10 rounded-xl bg-indigo-950/30 text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+            <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform">
               <Zap className="w-5 h-5" />
             </div>
             <div>
               <h3 className="font-bold text-zinc-900 dark:text-zinc-100">
                 Instant Processing
               </h3>
-              <p className="text-zinc-500 text-zinc-400 leading-relaxed mt-2">
+              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed mt-2 text-sm">
                 No uploads, no network delay. Your GPU and CPU handle the canvas drawing locally, outputting results in milliseconds.
               </p>
             </div>
@@ -196,16 +196,16 @@ export default function Home() {
           {/* Card 4 */}
           <motion.div
             variants={itemVariants}
-            className="glass-panel p-6 bg-zinc-900/20 border border-zinc-800/40 hover:border-indigo-900/50 transition-all duration-300 shadow-lg flex flex-col gap-4 group"
+            className="glass-panel p-6 bg-white/60 dark:bg-zinc-900/20 border border-zinc-200/50 dark:border-zinc-800/40 hover:border-indigo-400 dark:hover:border-indigo-900/50 transition-all duration-300 shadow-lg flex flex-col gap-4 group"
           >
-            <div className="w-10 h-10 rounded-xl bg-indigo-950/30 text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform">
+            <div className="w-10 h-10 rounded-xl bg-indigo-50 dark:bg-indigo-950/30 text-indigo-600 dark:text-indigo-400 flex items-center justify-center group-hover:scale-105 transition-transform">
               <ShieldCheck className="w-5 h-5" />
             </div>
             <div>
               <h3 className="font-bold text-zinc-900 dark:text-zinc-100">
                 100% Private
               </h3>
-              <p className="text-zinc-500 text-zinc-400 leading-relaxed mt-2">
+              <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed mt-2 text-sm">
                 Privacy-first architecture. All pixel manipulation happens inside sandbox canvas nodes. No tracking, no uploads.
               </p>
             </div>
@@ -230,7 +230,7 @@ export default function Home() {
             return (
               <div
                 key={index}
-                className="glass-panel bg-zinc-900/25 border border-zinc-800/40 overflow-hidden transition-all duration-300"
+                className="glass-panel bg-white/60 dark:bg-zinc-900/25 border border-zinc-200/50 dark:border-zinc-800/40 overflow-hidden transition-all duration-300"
               >
                 <button
                   onClick={() => setOpenFaqIndex(isOpen ? null : index)}
