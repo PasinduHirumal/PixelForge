@@ -57,6 +57,17 @@ export default function CropPreview({
     }
   }, [croppedBlob, originalFilename]);
 
+  // Lock background scroll when drawer is open
+  useEffect(() => {
+    if (isOpen) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
+
   const handleDownloadClick = () => {
     if (croppedBlob) {
       onDownload(croppedBlob, filename, "", format, quality);
@@ -91,10 +102,10 @@ export default function CropPreview({
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", damping: 25, stiffness: 220 }}
-            className="fixed right-0 top-0 bottom-0 z-[130] w-full max-w-lg bg-white/95 dark:bg-zinc-950/95 border-l border-zinc-200/50 dark:border-zinc-900/50 shadow-2xl p-6 md:p-8 flex flex-col gap-6 overflow-y-auto"
+            className="fixed right-0 top-0 bottom-0 z-[130] w-full max-w-lg bg-white/95 dark:bg-zinc-950/95 border-l border-zinc-200/50 dark:border-zinc-900/50 shadow-2xl p-6 md:p-8 flex flex-col h-screen max-h-screen overflow-hidden"
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b border-zinc-200/50 dark:border-zinc-800/50 pb-4">
+            <div className="flex-shrink-0 flex items-center justify-between border-b border-zinc-200/50 dark:border-zinc-800/50 pb-4">
               <div className="flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-indigo-500" />
                 <h3 className="text-lg font-bold text-zinc-950 dark:text-zinc-50">
@@ -109,92 +120,95 @@ export default function CropPreview({
               </button>
             </div>
 
-            {/* Cropped Image Live Preview */}
-            <div className="flex-grow flex flex-col justify-center items-center">
-              <div className="glass-panel w-full relative flex items-center justify-center p-3 bg-zinc-950/5 dark:bg-zinc-950/45 border-dashed border-2 border-zinc-200/50 dark:border-zinc-800/50 min-h-[220px] rounded-2xl overflow-hidden shadow-inner group">
-                {previewUrl ? (
-                  <div className="relative">
-                    <img
-                      src={previewUrl}
-                      alt="Cropped Preview"
-                      className="max-h-[240px] md:max-h-[300px] w-auto rounded-xl object-contain shadow-lg border border-white/20 dark:border-zinc-900/50 transition-transform duration-500 group-hover:scale-101"
-                    />
-                    
-                    {/* Dimension Tag */}
-                    <div className="absolute bottom-2.5 right-2.5 bg-black/75 backdrop-blur text-[10px] font-bold text-white px-2.5 py-1 rounded-full shadow border border-white/10">
-                      {targetWidth} × {targetHeight} px
+            {/* Scrollable Content Body */}
+            <div className="flex-grow overflow-y-auto py-4 flex flex-col gap-6 pr-1.5 -mr-1.5 scrollbar-thin">
+              {/* Cropped Image Live Preview */}
+              <div className="flex flex-col justify-center items-center">
+                <div className="glass-panel w-full relative flex items-center justify-center p-3 bg-zinc-950/5 dark:bg-zinc-950/45 border-dashed border-2 border-zinc-200/50 dark:border-zinc-800/50 min-h-[220px] rounded-2xl overflow-hidden shadow-inner group">
+                  {previewUrl ? (
+                    <div className="relative">
+                      <img
+                        src={previewUrl}
+                        alt="Cropped Preview"
+                        className="max-h-[240px] md:max-h-[300px] w-auto rounded-xl object-contain shadow-lg border border-white/20 dark:border-zinc-900/50 transition-transform duration-500 group-hover:scale-101"
+                      />
+                      
+                      {/* Dimension Tag */}
+                      <div className="absolute bottom-2.5 right-2.5 bg-black/75 backdrop-blur text-[10px] font-bold text-white px-2.5 py-1 rounded-full shadow border border-white/10">
+                        {targetWidth} × {targetHeight} px
+                      </div>
                     </div>
-                  </div>
-                ) : (
-                  <div className="flex flex-col items-center gap-2 text-zinc-400">
-                    <ImageIcon className="w-10 h-10 animate-pulse text-zinc-300 dark:text-zinc-700" />
-                    <span className="text-xs font-medium">Generating crop preview...</span>
+                  ) : (
+                    <div className="flex flex-col items-center gap-2 text-zinc-400">
+                      <ImageIcon className="w-10 h-10 animate-pulse text-zinc-300 dark:text-zinc-700" />
+                      <span className="text-xs font-medium">Generating crop preview...</span>
+                    </div>
+                  )}
+                </div>
+
+                {croppedBlob && (
+                  <div className="text-[10px] text-zinc-400 font-medium mt-2 flex gap-1 items-center">
+                    <span>Approx. intermediate PNG size:</span>
+                    <span className="font-semibold text-zinc-500 dark:text-zinc-300">
+                      {formatBytes(croppedBlob.size)}
+                    </span>
                   </div>
                 )}
               </div>
 
-              {croppedBlob && (
-                <div className="text-[10px] text-zinc-400 font-medium mt-2 flex gap-1 items-center">
-                  <span>Approx. intermediate PNG size:</span>
-                  <span className="font-semibold text-zinc-500 dark:text-zinc-300">
-                    {formatBytes(croppedBlob.size)}
-                  </span>
+              {/* Downloader Settings Panel */}
+              <div className="flex flex-col gap-4 border-t border-zinc-200/50 dark:border-zinc-800/50 pt-5">
+                {/* Filename */}
+                <div className="flex flex-col gap-1.5">
+                  <label className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
+                    Export Filename
+                  </label>
+                  <input
+                    type="text"
+                    value={filename}
+                    onChange={(e) => setFilename(e.target.value)}
+                    className="w-full glass-input px-4 py-2.5 text-sm rounded-2xl"
+                    placeholder="Filename"
+                  />
                 </div>
-              )}
+
+                {/* Format & Quality Row */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pb-12">
+                  <Select
+                    label="Output Format"
+                    options={formatOptions}
+                    selectedValue={format}
+                    onChange={(newFormat) => setFormat(newFormat)}
+                  />
+
+                  <div className="flex items-end">
+                    {showQualitySlider && (
+                      <Slider
+                        label="Quality Compression"
+                        min={0.1}
+                        max={1.0}
+                        step={0.05}
+                        value={quality}
+                        onChange={setQuality}
+                        valueDisplay={(v) => `${Math.round(v * 100)}%`}
+                      />
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
 
-            {/* Downloader Settings Panel */}
-            <div className="flex flex-col gap-4 border-t border-zinc-200/50 dark:border-zinc-800/50 pt-5">
-              
-              {/* Filename */}
-              <div className="flex flex-col gap-1.5">
-                <label className="text-xs font-semibold text-zinc-500 dark:text-zinc-400">
-                  Export Filename
-                </label>
-                <input
-                  type="text"
-                  value={filename}
-                  onChange={(e) => setFilename(e.target.value)}
-                  className="w-full glass-input px-4 py-2.5 text-sm rounded-2xl"
-                  placeholder="Filename"
-                />
-              </div>
-
-              {/* Format & Quality Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <Select
-                  label="Output Format"
-                  options={formatOptions}
-                  selectedValue={format}
-                  onChange={(newFormat) => setFormat(newFormat)}
-                />
-
-                <div className="flex items-end">
-                  {showQualitySlider && (
-                    <Slider
-                      label="Quality Compression"
-                      min={0.1}
-                      max={1.0}
-                      step={0.05}
-                      value={quality}
-                      onChange={setQuality}
-                      valueDisplay={(v) => `${Math.round(v * 100)}%`}
-                    />
-                  )}
-                </div>
-              </div>
-
-              {/* Download Trigger */}
+            {/* Fixed Footer */}
+            <div className="flex-shrink-0 border-t border-zinc-200/50 dark:border-zinc-800/50 pt-4 mt-auto">
               <Button
                 variant="secondary"
                 onClick={handleDownloadClick}
-                className="w-full flex items-center gap-2 mt-4 py-3.5 shadow-lg cursor-pointer"
+                className="w-full flex items-center gap-2 py-3.5 shadow-lg cursor-pointer"
               >
                 <Download className="w-4.5 h-4.5" />
                 Download Cropped Image
               </Button>
             </div>
-
           </motion.div>
         </>
       )}
