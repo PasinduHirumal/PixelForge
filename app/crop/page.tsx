@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowLeft, Crop as CropIcon, Image as ImageIcon, Sparkles } from "lucide-react";
+import { ArrowLeft, Crop as CropIcon } from "lucide-react";
 import Link from "next/link";
 import { useImageUpload } from "../../hooks/useImageUpload";
 import { useCrop } from "../../hooks/useCrop";
