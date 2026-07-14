@@ -8,7 +8,6 @@ import Slider from "../shared/Slider";
 import Select from "../shared/Select";
 import { OUTPUT_FORMATS } from "../../constants/formats";
 import { formatBytes } from "../../utils/image";
-import { cn } from "../../lib/utils";
 
 interface CropPreviewProps {
   isOpen: boolean;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ArrowRight, Download, ImageIcon, RefreshCw, Sparkles, CheckCircle } from "lucide-react";
+import { Download, RefreshCw, Sparkles, CheckCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import { FileMeta } from "../../types";
 import { formatBytes } from "../../utils/image";
@@ -34,7 +34,10 @@ export default function ConvertWorkspace({
   // Trigger image loading overlay when converted URL changes
   useEffect(() => {
     if (convertedUrl) {
-      setIsImageLoading(true);
+      const frame = requestAnimationFrame(() => {
+        setIsImageLoading(true);
+      });
+      return () => cancelAnimationFrame(frame);
     }
   }, [convertedUrl]);
 

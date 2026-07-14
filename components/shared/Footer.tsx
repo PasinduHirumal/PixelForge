@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Crop, Heart } from "lucide-react";
+import { Heart } from "lucide-react";
 
 function GithubIcon({ className }: { className?: string }) {
   return (

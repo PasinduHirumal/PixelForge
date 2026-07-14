@@ -59,13 +59,21 @@ export default function CropPage() {
   // Sync image upload with animation phase
   useEffect(() => {
     if (image) {
-      setAnimationPhase("animating");
+      const frame = requestAnimationFrame(() => {
+        setAnimationPhase("animating");
+      });
       const timer = setTimeout(() => {
         setAnimationPhase("done");
       }, 700); // 700ms showcase
-      return () => clearTimeout(timer);
+      return () => {
+        cancelAnimationFrame(frame);
+        clearTimeout(timer);
+      };
     } else {
-      setAnimationPhase("idle");
+      const frame = requestAnimationFrame(() => {
+        setAnimationPhase("idle");
+      });
+      return () => cancelAnimationFrame(frame);
     }
   }, [image]);
 

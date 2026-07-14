@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { ShieldCheck, Zap, Heart, EyeOff, Code2, Globe } from "lucide-react";
+import { Zap, EyeOff, Code2, Globe } from "lucide-react";
 
 export default function AboutPage() {
   const features = [

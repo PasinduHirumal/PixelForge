@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { RefreshCw, Scissors, ChevronRight, Lock, Unlock, Image as ImageIcon } from "lucide-react";
+import { RefreshCw, Lock, Unlock, Image as ImageIcon } from "lucide-react";
 import Slider from "../shared/Slider";
 import Select from "../shared/Select";
 import Button from "../shared/Button";

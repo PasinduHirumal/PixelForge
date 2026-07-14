@@ -56,7 +56,7 @@ export function getFileMetadata(file: File): Promise<FileMeta> {
       });
     };
 
-    img.onerror = (err) => {
+    img.onerror = () => {
       URL.revokeObjectURL(url);
       reject(new Error("Failed to load image metadata. The file may be corrupted."));
     };
